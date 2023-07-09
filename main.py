@@ -2,6 +2,8 @@ import random
 
 from openpyxl import load_workbook
 
+import downloadfoddimg
+
 initStr = '''
 西兰花蒸蛋，食材：西兰花、鸡蛋。
 苹果胡萝卜泥，食材：苹果、胡萝卜。
@@ -68,9 +70,11 @@ excel = load_workbook('菜品库导入模板.xlsx')
 sheet1 = excel['Sheet1']
 initSerialNumber = 3
 for i in range(len(foodName)):
+    downloadfoddimg.down(foodName[i])
     initSerialIngredientNameNumber = initSerialNumber
     sheet1['A' + str(initSerialNumber)] = i + 1
     sheet1['B' + str(initSerialNumber)] = foodName[i]
+
     for j in ingredientName[i]:
         sheet1['C' + str(initSerialIngredientNameNumber)] = j
         sheet1['D' + str(initSerialIngredientNameNumber)] = str(random.randint(5, 15)) + '0'
